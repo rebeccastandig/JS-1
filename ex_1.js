@@ -7,11 +7,10 @@ function askUser() {
 }
 
 function guessLetter(guessedLetter) {
-    while (wordLetters.length !== 0) {
+    while (wordLetters.length !== correctGuessedLetters) {
         for (i = 0; i < wordLetters.length; i++)
             if (guessedLetter == wordLetters[i]){
                 correctGuessedLetters.push(guessedLetter);
-                wordLetters.splice(i, 1);
                 console.log("You found a letter in the word!");
             }
     } if (wordLetters.length === 0) {
