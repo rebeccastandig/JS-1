@@ -19,6 +19,11 @@ var BookList = function(books){
             };
           }
         };
+        for (var i = this.bookShelf.length - 1; i >= 0; i--) {
+            if(this.bookShelf[i].read == false) {
+                this.nextBook = this.bookShelf[i];
+            }
+        };
     
 
 //     numReadBooks = this.readBooks(this.bookShelf);
@@ -30,27 +35,32 @@ var BookList = function(books){
 //             }
 //         }
 //     };
-//     this.add = function(newBook){
-//         //add new book to this.bookShelf
-//         this.Bookshelf.push(newBook);
-//         if (newBook.read == true){
-//             this.readBooks(this.bookShelf);
-//         }
-//         for (var i = this.bookShelf.length - 1; i >= 0; i--) {
-//             if (newBook.readDate >= bookShelf[i].readDate) {
-//                 this.lastBook = newBook;
-//             };
-//             if (newBook.read === false) { //this is some janky-ass code ahhhhhhh
-//                 this.nextBook = newBook;
-//             }
-//     };
-//     this.finishCurrentBook = function() {
-//         this.currentBook.read = true;
-//         this.currentBook.readDate = new Date(Date.now());
-//         this.lastBook = this.currentBook;
-//         this.currentBook = this.nextBook;
-//         this.nextBook = this.bookShelf[this.readTrueOrFalse === false];
-//     };
+
+    this.finishCurrentBook = function() {
+        if (this.currentBook) {
+            this.currentBook.read = true;
+            this.currentBook.readDate = new Date(Date.now());
+            this.lastBook = this.currentBook;
+            
+
+            for (var i = this.bookShelf.length - 1; i >= 0; i--) {
+                if (!this.bookShelf[i].read){
+                    this.nextBook = this.bookShelf[i];
+                    var reassigned = true;
+                    console.log("next book: ",this.nextBook)
+                }
+            }
+            if (!reassigned){
+                this.nextBook = null;
+            }
+            this.currentBook = this.nextBook;
+        } else {
+                console.log("You don't have a current book. Go to the library!");
+
+            //update # of read books
+           
+        }
+    };
 };
 
 books = [];
@@ -74,5 +84,9 @@ var ourBookList = new BookList(books);
 // console.log(kamaSutra);
 // console.log(theBible);
 // console.log(harryPotter);
-console.log(ourBookList.currentBook);
-console.log(ourBookList.lastBook);
+console.log("current book: ", ourBookList.currentBook);
+ourBookList.finishCurrentBook();
+console.log("current book now: ", ourBookList.currentBook);
+ourBookList.finishCurrentBook();
+console.log("current book now: ", ourBookList.currentBook);
+ourBookList.finishCurrentBook();
