@@ -65,7 +65,7 @@ var BookList = function(books){
 
 books = [];
 var Book = function(title, genre, author, readTrueOrFalse, readDate){
-    this.title = title;
+    this.titles = title;
     this.genre = genre;
     this.author = author;
     this.read = readTrueOrFalse;
