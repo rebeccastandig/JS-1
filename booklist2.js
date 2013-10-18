@@ -45,6 +45,15 @@ var BookList = function(books){ //books is an array
             this.booksUnread.push(oneBook);
         }
     };
+
+    this.finishCurrentBook = function() {
+        this.currentBook.readDate = new Date();
+        this.currentBook.read = true;
+        this.booksRead.push(this.currentBook());
+
+        this.booksUnread.shift(this.currentBook());
+        console.log("Finish this MF book.");
+    };
  
     //---------------------------------
 
@@ -67,10 +76,13 @@ myBooks = [];
 myBooks.push(harryPotter, warAndPeace, theBible, pridePrejudice);
 var micasBookList = new BookList(myBooks);
 
-console.log("Latest book: ", micasBookList.lastBook());
 
 var foodMatters = new Book("Food Matters", "Non-Fiction", "Michael Pollan", true, "01 Jan 2013");
 micasBookList.add(foodMatters);
 
-console.log("Latest book now:  ", micasBookList.lastBook());
+console.log(micasBookList.currentBook());
+micasBookList.finishCurrentBook();
+console.log(micasBookList.currentBook());
 
+console.log(micasBookList.booksRead);
+console.log(micasBookList.booksUnread);
