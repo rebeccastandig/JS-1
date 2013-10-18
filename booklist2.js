@@ -34,7 +34,11 @@ var BookList = function(books){ //books is an array
     };
 
     this.nextBook = function(){
-        return this.booksUnread[1];
+        if (this.numBooksUnread===0) {
+            return console.log("You have no unread books. Go to the library.");
+        } else {
+            return this.booksUnread[1];
+        }
     };
 
     this.add = function(oneBook) {
@@ -47,12 +51,10 @@ var BookList = function(books){ //books is an array
     };
 
     this.finishCurrentBook = function() {
-        this.currentBook().read = true;
-        this.currentBook().readDate = new Date(Date.now());
-        this.booksRead.push(this.currentBook());
-        this.booksUnread.shift(this.currentBook());
-
-
+            this.currentBook().read = true;
+            this.currentBook().readDate = new Date(Date.now());
+            this.booksRead.push(this.currentBook());
+            this.booksUnread.shift(this.currentBook());
     };
  
     //---------------------------------
@@ -82,7 +84,13 @@ micasBookList.add(foodMatters);
 
 console.log("My last book: ", micasBookList.lastBook());
 console.log("My current book: ",micasBookList.currentBook());
+console.log("My next book: ", micasBookList.nextBook());
+
+console.log("**************************");
 micasBookList.finishCurrentBook();
-console.log("**************************")
+
+
 console.log("My last book: ", micasBookList.lastBook());
 console.log("My current book: ",micasBookList.currentBook());
+console.log("My next book: ", micasBookList.nextBook());
+
