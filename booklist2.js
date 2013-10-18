@@ -7,17 +7,7 @@ var Book = function(title, genre, author, read, readDate) {
 };
 
 
-
 var BookList = function(books){ //books is an array
-    this.add = function(oneBook) {
-        this.bookShelf.push(oneBook);
-        if (oneBook.read === true) {
-            this.booksRead.push(oneBook);
-        } else {
-            this.booksUnread.push(oneBook);
-        }
-    };
- 
     this.numBooksRead = function(){
         return this.booksRead.length;
     };
@@ -26,7 +16,6 @@ var BookList = function(books){ //books is an array
         return this.booksUnread.length;
     };
 
-    //Finds first book un UnreadBooks list and returns it
     this.lastBook = function() {
         for (var i = 0; i < this.booksRead.length; i++) {
             latestRead = this.booksRead[i];
@@ -47,6 +36,16 @@ var BookList = function(books){ //books is an array
     this.nextBook = function(){
         return this.booksUnread[1];
     };
+
+    this.add = function(oneBook) {
+        this.bookShelf.push(oneBook);
+        if (oneBook.read === true) {
+            this.booksRead.push(oneBook);
+        } else {
+            this.booksUnread.push(oneBook);
+        }
+    };
+ 
     //---------------------------------
 
     this.booksRead = [];
@@ -68,12 +67,10 @@ myBooks = [];
 myBooks.push(harryPotter, warAndPeace, theBible, pridePrejudice);
 var micasBookList = new BookList(myBooks);
 
-;
+console.log("Latest book: ", micasBookList.lastBook());
 
-var foodMatters = new Book("Food Matters", "Non-Fiction", "Michael Pollan", true, "01 Dec 2013");
+var foodMatters = new Book("Food Matters", "Non-Fiction", "Michael Pollan", true, "01 Jan 2013");
 micasBookList.add(foodMatters);
 
-console.log(micasBookList.nextBook());
-console.log(micasBookList.currentBook())
-
+console.log("Latest book now:  ", micasBookList.lastBook());
 
