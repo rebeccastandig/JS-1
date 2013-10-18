@@ -43,6 +43,19 @@ var BookList = function(books){
         }
     };
 
+    this.add = function(bookObject){
+        this.bookShelf.push(bookObject);
+
+        if (bookObject.read) {
+            this.numReadBooks += 1;
+            if (bookObject.readDate > this.lastBook.readDate) {
+                this.lastBook = bookObject;
+            }
+        } else {
+            this.numUnreadBooks += 1;
+        }
+    } 
+
 
     this.finishCurrentBook = function() {
         if (this.currentBook) {
@@ -76,7 +89,6 @@ var Book = function(title, genre, author, readTrueOrFalse, readDate){
     this.author = author;
     this.read = readTrueOrFalse;
     this.readDate = new Date(readDate);
-    books.push(this);
 };
 
 
@@ -86,13 +98,19 @@ var theBible = new Book("The Bible", "Fiction", "God", true, "15 Sep 2013");
 var greysAnatomy = new Book("Grey's Anatomy", "Medical", "Grey", true, "10 Sep 2004");
 var warAndPeace = new Book("War and Peace", "Fiction", "Leo Tolstoy", false);
 var littleWomen = new Book("Little Women", "Fiction", "Louisa May Alcott", true, "10 Sep 1999");
+books.push(harryPotter, kamaSutra, theBible, greysAnatomy, warAndPeace, littleWomen);
 var ourBookList = new BookList(books);
 
 
 // console.log("current book: ", ourBookList.currentBook);
-ourBookList.finishCurrentBook();
-console.log("Now I've read ", ourBookList.numReadBooks, " books.")
-console.log("And I have ", ourBookList.numUnreadBooks, " books left to read.")
+// ourBookList.finishCurrentBook();
+// console.log("Now I've read ", ourBookList.numReadBooks, " books.")
+// console.log("And I have ", ourBookList.numUnreadBooks, " books left to read.")
+var lotr = new Book("Lord of the Rings", "Fiction", "JRR Tolkein", true, "17 Oct 2013");
+console.log(ourBookList.lastBook);
+console.log("*********************************");
+ourBookList.add(lotr);
+console.log(ourBookList.lastBook);
 // console.log("current book now: ", ourBookList.currentBook);
 // ourBookList.finishCurrentBook();
 // console.log("current book now: ", ourBookList.currentBook);
