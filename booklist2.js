@@ -47,12 +47,12 @@ var BookList = function(books){ //books is an array
     };
 
     this.finishCurrentBook = function() {
-        this.currentBook.readDate = new Date();
-        this.currentBook.read = true;
+        this.currentBook().read = true;
+        this.currentBook().readDate = new Date(Date.now());
         this.booksRead.push(this.currentBook());
-
         this.booksUnread.shift(this.currentBook());
-        console.log("Finish this MF book.");
+
+
     };
  
     //---------------------------------
@@ -75,14 +75,14 @@ var pridePrejudice = new Book("Pride and Prejudice", "Fiction", "Jane Austen", t
 myBooks = [];
 myBooks.push(harryPotter, warAndPeace, theBible, pridePrejudice);
 var micasBookList = new BookList(myBooks);
-
-
+//Test adding a book
 var foodMatters = new Book("Food Matters", "Non-Fiction", "Michael Pollan", true, "01 Jan 2013");
 micasBookList.add(foodMatters);
 
-console.log(micasBookList.currentBook());
-micasBookList.finishCurrentBook();
-console.log(micasBookList.currentBook());
 
-console.log(micasBookList.booksRead);
-console.log(micasBookList.booksUnread);
+console.log("My last book: ", micasBookList.lastBook());
+console.log("My current book: ",micasBookList.currentBook());
+micasBookList.finishCurrentBook();
+console.log("**************************")
+console.log("My last book: ", micasBookList.lastBook());
+console.log("My current book: ",micasBookList.currentBook());
