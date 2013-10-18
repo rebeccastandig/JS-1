@@ -73,12 +73,15 @@ var kamaSutra = new Book("Kama Sutra", "Erotica", "Anonymous", false);
 var theBible = new Book("The Bible", "Fiction", "God", true, "15 Sep 2013");
 var greysAnatomy = new Book("Grey's Anatomy", "Medical", "Grey", true, "10 Sep 2004");
 var littleWomen = new Book("Little Women", "Fiction", "Louisa May Alcott", true, "10 Sep 1999");
+var warAndPeace = new Book("War and Peace", "Fiction", "Leo Tolstoy", false);
+var joyOfCooking = new Book("Joy of Cooking", "Cooking", "Irma Rombauer", true, "06 June 2008");
+
 var ourBookList = new BookList(books);
 
 
 var ul = document.createElement("ul");
 
-for (var i = 0; i < ourBookList.bookShelf.length -1; i++){
+for (var i = 0; i < ourBookList.bookShelf.length; i++){
     var li = document.createElement("li");
     var bookTitle = ourBookList.bookShelf[i].titles;
     var bookAuthor = ourBookList.bookShelf[i].author;
