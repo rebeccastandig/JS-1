@@ -26,6 +26,13 @@ var BookList = function(books){ //books is an array
         return this.booksUnread.length;
     };
 
+    //Finds first book un UnreadBooks list and returns it
+    this.currentBook = function(){
+        return this.booksUnread[0];
+    };
+
+
+
 
     //---------------------------------
 
@@ -45,10 +52,10 @@ var warAndPeace = new Book("War And Peace", "Fiction", "Leo Tolstoy", false);
 var pridePrejudice = new Book("Pride and Prejudice", "Fiction", "Jane Austen", true, "2008");
 
 myBooks = [];
-myBooks.push(harryPotter, theBible, warAndPeace);
-
+myBooks.push(harryPotter, warAndPeace, theBible);
 var micasBookList = new BookList(myBooks);
 
-console.log("How many read books: ", micasBookList.numBooksRead());
 micasBookList.add(pridePrejudice);
-console.log("How many read books: ", micasBookList.numBooksRead());
+
+console.log(micasBookList.currentBook());
+
