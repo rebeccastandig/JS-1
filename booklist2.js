@@ -31,8 +31,18 @@ var BookList = function(books){ //books is an array
         return this.booksUnread[0];
     };
 
+    this.lastBook = function() {
+        for (var i = 0; i < this.booksRead.length; i++) {
+            latestRead = this.booksRead[i];
 
-
+               for (var j = 0; j < this.booksRead.length; j++) {
+                if (this.booksRead[j].readDate > latestRead.readDate) {
+                    latestRead = this.booksRead[j];
+                }
+            }
+        }
+        return latestRead;
+    };
 
     //---------------------------------
 
@@ -46,16 +56,21 @@ var BookList = function(books){ //books is an array
 
 }; //end of the booklist
 
-var harryPotter = new Book("Harry Potter & the Sorcerer's Stone", "Fiction", "J.K.Rowling", true, "1998");
+var harryPotter = new Book("Harry Potter & the Sorcerer's Stone", "Fiction", "J.K.Rowling", true, "01 Sep 1998");
 var theBible = new Book("The Bible", "Religion", "God", false);
 var warAndPeace = new Book("War And Peace", "Fiction", "Leo Tolstoy", false);
-var pridePrejudice = new Book("Pride and Prejudice", "Fiction", "Jane Austen", true, "2008");
+var pridePrejudice = new Book("Pride and Prejudice", "Fiction", "Jane Austen", true, "01 Jan 2008");
 
 myBooks = [];
-myBooks.push(harryPotter, warAndPeace, theBible);
+myBooks.push(harryPotter, warAndPeace, theBible, pridePrejudice);
 var micasBookList = new BookList(myBooks);
 
-micasBookList.add(pridePrejudice);
+console.log(micasBookList.lastBook());
 
-console.log(micasBookList.currentBook());
+var foodMatters = new Book("Food Matters", "Non-Fiction", "Michael Pollan", true, "01 Dec 2013");
+micasBookList.add(foodMatters);
+
+console.log(micasBookList.lastBook());
+
+
 
